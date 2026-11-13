@@ -3,35 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jianpu Trainer – Learn Numbered Notation Solfège (Do Re Mi)</title>
-  <meta name="description" content="Free practice tool for jianpu (numbered musical notation). See random number sequences like 1 3 5, sing the solfège syllables (do re mi fa sol la si/ti), then press Space to check the answer and hear the pitches. Available in English, 中文, 日本語, 한국어, Español, Français, Deutsch, Português and Русский." />
-  <meta name="keywords" content="jianpu, numbered musical notation, solfege, solfège practice, do re mi, sight singing, music theory, ear training, 简谱, 唱名, 簡譜, 数字譜, 간보" />
-  <link rel="canonical" href="https://yankunsong.github.io/jianpu-trainer/" />
-  <link rel="alternate" hreflang="x-default" href="https://yankunsong.github.io/jianpu-trainer/" />
-  <link rel="alternate" hreflang="en" href="https://yankunsong.github.io/jianpu-trainer/?lang=en" />
-  <link rel="alternate" hreflang="zh-Hans" href="https://yankunsong.github.io/jianpu-trainer/?lang=zh-Hans" />
-  <link rel="alternate" hreflang="zh-Hant" href="https://yankunsong.github.io/jianpu-trainer/?lang=zh-Hant" />
-  <link rel="alternate" hreflang="ja" href="https://yankunsong.github.io/jianpu-trainer/?lang=ja" />
-  <link rel="alternate" hreflang="ko" href="https://yankunsong.github.io/jianpu-trainer/?lang=ko" />
-  <link rel="alternate" hreflang="es" href="https://yankunsong.github.io/jianpu-trainer/?lang=es" />
-  <link rel="alternate" hreflang="fr" href="https://yankunsong.github.io/jianpu-trainer/?lang=fr" />
-  <link rel="alternate" hreflang="de" href="https://yankunsong.github.io/jianpu-trainer/?lang=de" />
-  <link rel="alternate" hreflang="pt" href="https://yankunsong.github.io/jianpu-trainer/?lang=pt" />
-  <link rel="alternate" hreflang="ru" href="https://yankunsong.github.io/jianpu-trainer/?lang=ru" />
+  <title>Solfège Lab – Numbers to Solfège Trainer: Scale Degrees 1–7 as Do Re Mi</title>
+  <meta name="description" content="Free solfège practice: see random scale-degree numbers like 1 3 5, sing them as do re mi fa sol la ti (or si), then press Space to check and hear the pitches. Great for sight-singing, music theory class and reading numbered notation (jianpu)." />
+  <meta name="keywords" content="solfege practice, solfege trainer, scale degrees, do re mi, sight singing, music theory, ear training, numbered notation, jianpu, 简谱, 唱名, 簡譜, 数字譜, 간보" />
+  <link rel="canonical" href="https://solfegelab.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://solfegelab.com/" />
+  <link rel="alternate" hreflang="en" href="https://solfegelab.com/?lang=en" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://solfegelab.com/?lang=zh-Hans" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://solfegelab.com/?lang=zh-Hant" />
+  <link rel="alternate" hreflang="ja" href="https://solfegelab.com/?lang=ja" />
+  <link rel="alternate" hreflang="ko" href="https://solfegelab.com/?lang=ko" />
+  <link rel="alternate" hreflang="es" href="https://solfegelab.com/?lang=es" />
+  <link rel="alternate" hreflang="fr" href="https://solfegelab.com/?lang=fr" />
+  <link rel="alternate" hreflang="de" href="https://solfegelab.com/?lang=de" />
+  <link rel="alternate" hreflang="pt" href="https://solfegelab.com/?lang=pt" />
+  <link rel="alternate" hreflang="ru" href="https://solfegelab.com/?lang=ru" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Jianpu Trainer – Numbered Notation to Solfège" />
-  <meta property="og:description" content="Read random jianpu numbers, sing do re mi, press Space to check." />
-  <meta property="og:url" content="https://yankunsong.github.io/jianpu-trainer/" />
+  <meta property="og:title" content="Solfège Lab – Numbers to Solfège Trainer" />
+  <meta property="og:site_name" content="Solfège Lab" />
+  <meta property="og:description" content="See scale-degree numbers, sing do re mi, press Space to check." />
+  <meta property="og:url" content="https://solfegelab.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317203a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-weight='700' font-size='44' fill='%23fff' text-anchor='middle'%3E1%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
   <header class="top">
     <div class="title-row">
-      <h1><span data-i18n="h1">Jianpu Trainer</span> <span class="tagline" data-i18n="tagline">numbers → solfège</span></h1>
+      <h1><span class="brand">Solfège Lab</span> <span class="tagline" data-i18n="tagline">Numbers → Solfège</span></h1>
       <label class="lang">
         <span class="sr-only" data-i18n="lang">Language</span>
         <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
@@ -87,8 +88,8 @@
     </section>
 
     <section class="about">
-      <h2 data-i18n="aboutTitle">What is jianpu?</h2>
-      <p id="aboutBody">Jianpu is numbered musical notation, widely used in China and East Asia. The digits 1–7 stand for the seven scale degrees, sung as <b>do re mi fa sol la si</b>. In C major, 1 = C, 2 = D, 3 = E, and so on. Reading the numbers straight as syllables is the first step to sight-singing from jianpu.</p>
+      <h2 data-i18n="aboutTitle">Numbers, scale degrees and solfège</h2>
+      <p id="aboutBody"></p>
     </section>
   </main>
 
@@ -97,7 +98,7 @@
     <span data-i18n="footTap">On a phone, tap the numbers to show the answer and use the arrows to move</span>
   </footer>
 
-  <script src="i18n.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <script src="i18n.js?v=8"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

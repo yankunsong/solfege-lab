@@ -54,6 +54,7 @@ kbd {
   font-weight: 700;
   letter-spacing: 0.04em;
 }
+.top h1 .brand { font-family: var(--digit); font-weight: 800; letter-spacing: 0.01em; }
 .top h1 .tagline { font-weight: 400; color: var(--muted); margin-left: 0.3em; }
 
 .title-row {

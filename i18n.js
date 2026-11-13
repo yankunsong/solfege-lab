@@ -15,9 +15,8 @@ const LANGUAGES = [
 
 const STRINGS = {
   en: {
-    docTitle: "Jianpu Trainer – Learn Numbered Notation Solfège (Do Re Mi)",
-    h1: "Jianpu Trainer",
-    tagline: "numbers → solfège",
+    docTitle: "Solfège Lab – Numbers to Solfège Trainer: Scale Degrees 1–7 as Do Re Mi",
+    tagline: "Numbers → Solfège",
     hint: "Read the numbers, sing the syllables out loud, then press {space} to check.",
     show: "Press {space} to show the answer",
     hide: "{space} hide answer · {right} next",
@@ -34,17 +33,16 @@ const STRINGS = {
     sound: "Play pitches with the answer (1 = C)",
     stats: (n) => (n === 1 ? "1 sequence practiced" : `${n} sequences practiced`),
     empty: "Pick at least one note below",
-    aboutTitle: "What is jianpu?",
+    aboutTitle: "Numbers, scale degrees and solfège",
     aboutBody:
-      "Jianpu is numbered musical notation, widely used in China and East Asia. The digits 1–7 stand for the seven scale degrees, sung as <b>{syllables}</b>. In C major, 1 = C, 2 = D, 3 = E, and so on. Reading the numbers straight as syllables is the first step to sight-singing from jianpu.",
+      "In music theory, the seven notes of a major scale are numbered 1–7 as scale degrees and sung as <b>{syllables}</b>. In C major, 1 = C, 2 = D, 3 = E, and so on. Numbered notation (called jianpu in China and East Asia) writes whole melodies this way. Reading the numbers straight as syllables is a first step to sight-singing.",
     footKeys: "{space} show / hide answer · {left} {right} previous / next",
     footTap: "On a phone, tap the numbers to show the answer and use the arrows to move",
     space: "Space",
     lang: "Language",
   },
   "zh-Hans": {
-    docTitle: "简谱练习 – 简谱数字与唱名（do re mi）对应训练",
-    h1: "简谱练习",
+    docTitle: "Solfège Lab – 简谱数字与唱名（do re mi）对应训练",
     tagline: "数字 → 唱名",
     hint: "看数字，先自己读出唱名，再按 {space} 核对。",
     show: "按 {space} 显示答案",
@@ -71,8 +69,7 @@ const STRINGS = {
     lang: "语言",
   },
   "zh-Hant": {
-    docTitle: "簡譜練習 – 簡譜數字與唱名（do re mi）對應訓練",
-    h1: "簡譜練習",
+    docTitle: "Solfège Lab – 簡譜數字與唱名（do re mi）對應訓練",
     tagline: "數字 → 唱名",
     hint: "看數字，先自己讀出唱名，再按 {space} 核對。",
     show: "按 {space} 顯示答案",
@@ -99,8 +96,7 @@ const STRINGS = {
     lang: "語言",
   },
   ja: {
-    docTitle: "数字譜トレーナー – 簡譜の数字と階名（ドレミ）を覚える",
-    h1: "数字譜トレーナー",
+    docTitle: "Solfège Lab – 数字譜（簡譜）の数字と階名（ドレミ）を覚える",
     tagline: "数字 → 階名",
     hint: "数字を見て階名を声に出して歌い、{space} で答え合わせ。",
     show: "{space} で答えを表示",
@@ -127,8 +123,7 @@ const STRINGS = {
     lang: "言語",
   },
   ko: {
-    docTitle: "간보 트레이너 – 숫자 악보를 계이름(도레미)으로 읽기",
-    h1: "간보 트레이너",
+    docTitle: "Solfège Lab – 숫자 악보를 계이름(도레미)으로 읽기",
     tagline: "숫자 → 계이름",
     hint: "숫자를 보고 계이름을 소리 내어 부른 뒤 {space}를 눌러 확인하세요.",
     show: "{space}를 눌러 정답 보기",
@@ -155,8 +150,7 @@ const STRINGS = {
     lang: "언어",
   },
   es: {
-    docTitle: "Jianpu Trainer – Aprende solfeo con notación numérica (Do Re Mi)",
-    h1: "Jianpu Trainer",
+    docTitle: "Solfège Lab – Practica solfeo con números: grados 1–7 como Do Re Mi",
     tagline: "números → solfeo",
     hint: "Lee los números, canta las sílabas en voz alta y pulsa {space} para comprobar.",
     show: "Pulsa {space} para ver la respuesta",
@@ -183,8 +177,7 @@ const STRINGS = {
     lang: "Idioma",
   },
   fr: {
-    docTitle: "Jianpu Trainer – Apprendre le solfège en notation chiffrée (do ré mi)",
-    h1: "Jianpu Trainer",
+    docTitle: "Solfège Lab – Lire les degrés 1 à 7 en solfège (do ré mi)",
     tagline: "chiffres → solfège",
     hint: "Lisez les chiffres, chantez les syllabes à voix haute, puis appuyez sur {space} pour vérifier.",
     show: "Appuyez sur {space} pour voir la réponse",
@@ -211,8 +204,7 @@ const STRINGS = {
     lang: "Langue",
   },
   de: {
-    docTitle: "Jianpu Trainer – Ziffernnotation mit Solmisation (Do Re Mi) üben",
-    h1: "Jianpu Trainer",
+    docTitle: "Solfège Lab – Stufenzahlen 1–7 als Do Re Mi singen üben",
     tagline: "Ziffern → Solmisation",
     hint: "Lies die Ziffern, sing die Silben laut und drück dann {space} zum Prüfen.",
     show: "{space} drücken für die Lösung",
@@ -239,8 +231,7 @@ const STRINGS = {
     lang: "Sprache",
   },
   pt: {
-    docTitle: "Jianpu Trainer – Aprenda solfejo com notação numérica (Dó Ré Mi)",
-    h1: "Jianpu Trainer",
+    docTitle: "Solfège Lab – Pratique solfejo com números: graus 1–7 como Dó Ré Mi",
     tagline: "números → solfejo",
     hint: "Leia os números, cante as sílabas em voz alta e pressione {space} para conferir.",
     show: "Pressione {space} para ver a resposta",
@@ -267,8 +258,7 @@ const STRINGS = {
     lang: "Idioma",
   },
   ru: {
-    docTitle: "Jianpu Trainer – цифровая нотация и сольфеджио (до ре ми)",
-    h1: "Jianpu Trainer",
+    docTitle: "Solfège Lab – ступени 1–7 как до ре ми: тренажёр сольфеджио",
     tagline: "цифры → сольфеджио",
     hint: "Прочитайте цифры, пропойте слоги вслух и нажмите {space}, чтобы проверить.",
     show: "Нажмите {space}, чтобы увидеть ответ",

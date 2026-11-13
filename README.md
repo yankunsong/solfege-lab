@@ -1,10 +1,10 @@
-# Jianpu Trainer
+# Solfège Lab
 
 A small, free music-theory practice site. Plain static HTML/CSS/JS, no build step.
 
-**Live:** https://yankunsong.github.io/jianpu-trainer/
+**Live:** https://solfegelab.com
 
-## Feature 1: jianpu numbers → solfège
+## Feature 1: Numbers → Solfège (scale degrees / jianpu)
 
 1. Pick the notes to practice (e.g. 1 2 3 5) and the sequence length range (e.g. 2–3).
 2. The site shows a random sequence such as `12`, `35`, `135`.
@@ -19,6 +19,10 @@ Settings are saved in your browser.
 ## Run locally
 
 Open `index.html` in a browser, or run `npx serve .`.
+
+## Deploy
+
+Deployed on Vercel as a static site (no build step). Pushes to `main` deploy to production.
 
 ---
 

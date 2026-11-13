@@ -3,8 +3,8 @@ const SYLLABLES = { 1: "do", 2: "re", 3: "mi", 4: "fa", 5: "sol", 6: "la" };
 // C major, 1 = C4
 const FREQ = { 1: 261.63, 2: 293.66, 3: 329.63, 4: 349.23, 5: 392.0, 6: 440.0, 7: 493.88 };
 
-const STORAGE_KEY = "jianpu-trainer:settings";
-const LANG_KEY = "jianpu-trainer:lang";
+const STORAGE_KEY = "solfege-lab:settings";
+const LANG_KEY = "solfege-lab:lang";
 // sevenName: null = follow the language (ti for English, si elsewhere) until the user picks one
 const DEFAULTS = { digits: [1, 2, 3, 5], minLen: 2, maxLen: 3, allowRepeat: false, playSound: true, sevenName: null };
 
@@ -71,8 +71,13 @@ function syllable(d) {
   return d === 7 ? seven() : SYLLABLES[d];
 }
 
+const SITE_URL = "https://solfegelab.com/";
+
 function applyLanguage() {
   document.documentElement.lang = lang;
+  // each language URL is its own canonical page; the bare URL stays the default
+  const hasLangParam = new URLSearchParams(location.search).has("lang");
+  document.querySelector('link[rel="canonical"]').href = hasLangParam ? `${SITE_URL}?lang=${lang}` : SITE_URL;
   document.title = t("docTitle");
   document.querySelectorAll("[data-i18n]").forEach((el) => (el.textContent = t(el.dataset.i18n)));
   document.querySelectorAll("[data-i18n-html]").forEach((el) => (el.innerHTML = withSpace(t(el.dataset.i18nHtml))));

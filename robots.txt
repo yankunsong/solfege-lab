@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://solfegelab.com/sitemap.xml
