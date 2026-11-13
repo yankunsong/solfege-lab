@@ -123,6 +123,30 @@ main {
   user-select: none;
 }
 
+.stage-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 3vw, 32px);
+  width: 100%;
+}
+
+.nav {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--rule);
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.nav:hover:not(:disabled) { color: var(--ink); border-color: var(--ink); }
+.nav:disabled { opacity: 0.35; cursor: default; }
+
 .staff {
   display: flex;
   align-items: flex-start;
@@ -132,6 +156,10 @@ main {
   border-left: 3px solid var(--ink);
   border-right: 3px solid var(--ink);
   min-height: 9rem;
+  min-width: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 12px;
 }
 
 .note {

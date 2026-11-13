@@ -20,12 +20,18 @@ const playSoundEl = $("playSound");
 const statsEl = $("stats");
 const langSelect = $("langSelect");
 const sevenGroup = $("sevenGroup");
+const prevBtn = $("prevBtn");
+const nextBtn = $("nextBtn");
 
 let settings = loadSettings();
 let lang = pickLanguage();
+// Every sequence shown so far, so ← can go back. Each entry: { seq, seen }.
+const MAX_HISTORY = 200;
+let past = [];
+let pos = -1;
 let current = [];
 let revealed = false;
-let count = 0;
+let count = 0; // sequences whose answer has been shown at least once
 
 function loadSettings() {
   try {
@@ -55,7 +61,8 @@ function pickLanguage() {
 
 const t = (key) => STRINGS[lang][key] ?? STRINGS.en[key];
 const kbd = () => `<kbd>${t("space")}</kbd>`;
-const withSpace = (s) => s.replace("{space}", kbd());
+const withSpace = (s) =>
+  s.replace("{space}", kbd()).replace("{left}", "<kbd>←</kbd>").replace("{right}", "<kbd>→</kbd>");
 
 function seven() {
   return settings.sevenName || (lang === "en" ? "ti" : "si");
@@ -72,6 +79,8 @@ function applyLanguage() {
   $("controls").setAttribute("aria-label", t("settings"));
   minLenEl.setAttribute("aria-label", t("min"));
   maxLenEl.setAttribute("aria-label", t("max"));
+  prevBtn.setAttribute("aria-label", t("prev"));
+  nextBtn.setAttribute("aria-label", t("nextBtn"));
   langSelect.value = lang;
   updateSevenUI();
   updateStats();
@@ -143,7 +152,7 @@ function generate() {
 
 function updatePrompt() {
   if (current.length === 0) prompt.textContent = t("empty");
-  else prompt.innerHTML = withSpace(t(revealed ? "next" : "show"));
+  else prompt.innerHTML = withSpace(t(revealed ? "hide" : "show"));
 }
 function updateStats() {
   statsEl.textContent = t("stats")(count);
@@ -160,27 +169,48 @@ function render() {
     staff.appendChild(note);
   }
   updatePrompt();
+  prevBtn.disabled = pos <= 0;
 }
 
-function next() {
-  current = generate();
+function show(index) {
+  pos = index;
+  current = past[pos] ? past[pos].seq : [];
   revealed = false;
   render();
 }
 
-function reveal() {
-  revealed = true;
-  count++;
-  updateStats();
-  // keep the existing notes so the entry animation doesn't replay
-  stage.classList.add("revealed");
-  updatePrompt();
-  if (settings.playSound) playSequence(current);
+// Start a fresh sequence after the current one (used when settings change).
+function fresh() {
+  const seq = generate();
+  past = past.slice(0, pos + 1);
+  past.push({ seq, seen: false });
+  if (past.length > MAX_HISTORY) past.shift();
+  show(past.length - 1);
 }
 
-function advance() {
-  if (current.length === 0) return next();
-  revealed ? next() : reveal();
+function next() {
+  if (pos < past.length - 1) show(pos + 1);
+  else fresh();
+}
+
+function prev() {
+  if (pos > 0) show(pos - 1);
+}
+
+function toggleAnswer() {
+  if (current.length === 0) return;
+  revealed = !revealed;
+  // toggle in place so the entry animation doesn't replay
+  stage.classList.toggle("revealed", revealed);
+  updatePrompt();
+  if (!revealed) return;
+  const entry = past[pos];
+  if (!entry.seen) {
+    entry.seen = true;
+    count++;
+    updateStats();
+  }
+  if (settings.playSound) playSequence(current);
 }
 
 // ---------- sound ----------
@@ -229,7 +259,7 @@ function buildChips() {
       settings.digits = has ? settings.digits.filter((x) => x !== d) : [...settings.digits, d].sort();
       b.setAttribute("aria-pressed", !has);
       saveSettings();
-      next();
+      fresh();
     });
     chips.appendChild(b);
   }
@@ -251,7 +281,7 @@ function onLenChange(e) {
   settings.minLen = min;
   settings.maxLen = max;
   saveSettings();
-  next();
+  fresh();
 }
 
 function initControls() {
@@ -289,16 +319,25 @@ function initControls() {
 }
 
 // ---------- input ----------
+const KEY_ACTIONS = { Space: toggleAnswer, ArrowLeft: prev, ArrowRight: next };
+
 document.addEventListener("keydown", (e) => {
-  if (e.code !== "Space" || e.repeat) return;
-  // don't hijack Space while typing in a field or using the language menu
-  if (e.target instanceof Element && e.target.matches("input[type=number], input[type=text], textarea, select")) return;
+  const action = KEY_ACTIONS[e.code];
+  if (!action || e.altKey || e.ctrlKey || e.metaKey) return;
+  if (e.code === "Space" && e.repeat) return;
+  // leave keys alone in fields, the language menu and the si/ti switch (arrows move there)
+  if (e.target instanceof Element && e.target.closest("input[type=number], input[type=text], textarea, select, #sevenGroup")) return;
   e.preventDefault();
   if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
-  advance();
+  action();
 });
-stage.addEventListener("click", advance);
+stage.addEventListener("click", (e) => {
+  if (e.target.closest(".nav")) return;
+  toggleAnswer();
+});
+prevBtn.addEventListener("click", prev);
+nextBtn.addEventListener("click", next);
 
 initControls();
-next();
+fresh();
 applyLanguage();

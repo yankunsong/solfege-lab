@@ -8,8 +8,8 @@ A small, free music-theory practice site. Plain static HTML/CSS/JS, no build ste
 
 1. Pick the notes to practice (e.g. 1 2 3 5) and the sequence length range (e.g. 2–3).
 2. The site shows a random sequence such as `12`, `35`, `135`.
-3. Sing the syllables yourself, then press **Space** to reveal the answer (do re mi fa sol la si), optionally with the pitches played back.
-4. Press **Space** again for the next sequence. On a phone, tap the numbers.
+3. Sing the syllables yourself, then press **Space** to show the answer (do re mi fa sol la si/ti), optionally with the pitches played back. Press **Space** again to hide it.
+4. Press **→** for the next sequence and **←** to go back to earlier ones. On a phone, tap the numbers to show the answer and use the arrow buttons to move.
 
 - Choose **si** or **ti** for 7.
 - Switch the interface language (English, 简体中文, 繁體中文, 日本語, 한국어, Español, Français, Deutsch, Português, Русский). Link to a language with `?lang=ja` etc.

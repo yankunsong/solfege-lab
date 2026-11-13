@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
   <header class="top">
@@ -43,7 +43,15 @@
 
   <main>
     <section class="stage" id="stage" aria-live="polite">
-      <div class="staff" id="staff"></div>
+      <div class="stage-row">
+        <button type="button" class="nav" id="prevBtn" aria-label="Previous">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="staff" id="staff"></div>
+        <button type="button" class="nav" id="nextBtn" aria-label="Next">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
       <p class="prompt" id="prompt">Press <kbd>Space</kbd> to show the answer</p>
     </section>
 
@@ -85,11 +93,11 @@
   </main>
 
   <footer class="foot">
-    <span data-i18n-html="footKeys"><kbd>Space</kbd> show answer / next</span>
-    <span data-i18n="footTap">On a phone, tap the numbers</span>
+    <span data-i18n-html="footKeys"><kbd>Space</kbd> show / hide answer · <kbd>←</kbd> <kbd>→</kbd> previous / next</span>
+    <span data-i18n="footTap">On a phone, tap the numbers to show the answer and use the arrows to move</span>
   </footer>
 
-  <script src="i18n.js?v=5"></script>
-  <script src="app.js?v=5"></script>
+  <script src="i18n.js?v=6"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
