@@ -309,7 +309,12 @@ main {
   .top { padding: 20px 16px 0; }
   main { padding: 16px; }
   .controls { grid-template-columns: 1fr; }
-  .stage { min-height: 260px; }
+  .stage { min-height: 260px; padding: 24px 10px; }
+  .stage-row { gap: 4px; }
+  .nav { width: 36px; height: 36px; }
+  .staff { gap: 8px; padding: 0 8px; }
+  .note { width: 44px; }
+  .digit { font-size: 3.1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
