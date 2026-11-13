@@ -22,7 +22,12 @@ Open `index.html` in a browser, or run `npx serve .`.
 
 ## Deploy
 
-Deployed on Vercel as a static site (no build step). Pushes to `main` deploy to production.
+Deployed on Vercel as a static site (no build step). Pushes to `main` deploy to production at https://solfegelab.com.
+
+## Adding a new tool
+
+- Give each tool its own URL (e.g. `/intervals`) so it can be indexed on its own.
+- Add the new URL and its `?lang=` variants to `sitemap.xml` (and the `hreflang` links in the page head). Google Search Console already has the sitemap, so nothing needs resubmitting there.
 
 ---
 
