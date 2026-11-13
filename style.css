@@ -15,7 +15,7 @@
   --n6: #4f5bd5;
   --n7: #9a4cc4;
 
-  --digit: "Fraunces", Georgia, serif;
+  --digit: "Bitter", Georgia, serif;
   --body: "Noto Sans", system-ui, sans-serif;
 }
 
@@ -113,7 +113,6 @@ main {
   font-weight: 800;
   font-size: clamp(3.6rem, 14vw, 6.5rem);
   line-height: 1;
-  font-variation-settings: "opsz" 144;
   transition: color 0.2s;
 }
 
