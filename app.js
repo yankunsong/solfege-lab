@@ -199,7 +199,7 @@ function initControls() {
 document.addEventListener("keydown", (e) => {
   if (e.code !== "Space" || e.repeat) return;
   // don't hijack Space while typing in a field
-  if (e.target.matches("input[type=number], input[type=text], textarea")) return;
+  if (e.target instanceof Element && e.target.matches("input[type=number], input[type=text], textarea")) return;
   e.preventDefault();
   if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
   advance();
