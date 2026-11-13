@@ -4,9 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jianpu Trainer – Learn Numbered Notation Solfège (Do Re Mi)</title>
-  <meta name="description" content="Free practice tool for jianpu (numbered musical notation). See random number sequences like 1 3 5, sing the solfège syllables (do re mi fa sol la si), then press Space to check the answer and hear the pitches." />
-  <meta name="keywords" content="jianpu, numbered musical notation, solfege, solfège practice, do re mi, sight singing, music theory, ear training, 简谱, 唱名" />
+  <meta name="description" content="Free practice tool for jianpu (numbered musical notation). See random number sequences like 1 3 5, sing the solfège syllables (do re mi fa sol la si/ti), then press Space to check the answer and hear the pitches. Available in English, 中文, 日本語, 한국어, Español, Français, Deutsch, Português and Русский." />
+  <meta name="keywords" content="jianpu, numbered musical notation, solfege, solfège practice, do re mi, sight singing, music theory, ear training, 简谱, 唱名, 簡譜, 数字譜, 간보" />
   <link rel="canonical" href="https://yankunsong.github.io/jianpu-trainer/" />
+  <link rel="alternate" hreflang="x-default" href="https://yankunsong.github.io/jianpu-trainer/" />
+  <link rel="alternate" hreflang="en" href="https://yankunsong.github.io/jianpu-trainer/?lang=en" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://yankunsong.github.io/jianpu-trainer/?lang=zh-Hans" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://yankunsong.github.io/jianpu-trainer/?lang=zh-Hant" />
+  <link rel="alternate" hreflang="ja" href="https://yankunsong.github.io/jianpu-trainer/?lang=ja" />
+  <link rel="alternate" hreflang="ko" href="https://yankunsong.github.io/jianpu-trainer/?lang=ko" />
+  <link rel="alternate" hreflang="es" href="https://yankunsong.github.io/jianpu-trainer/?lang=es" />
+  <link rel="alternate" hreflang="fr" href="https://yankunsong.github.io/jianpu-trainer/?lang=fr" />
+  <link rel="alternate" hreflang="de" href="https://yankunsong.github.io/jianpu-trainer/?lang=de" />
+  <link rel="alternate" hreflang="pt" href="https://yankunsong.github.io/jianpu-trainer/?lang=pt" />
+  <link rel="alternate" hreflang="ru" href="https://yankunsong.github.io/jianpu-trainer/?lang=ru" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Jianpu Trainer – Numbered Notation to Solfège" />
   <meta property="og:description" content="Read random jianpu numbers, sing do re mi, press Space to check." />
@@ -15,12 +26,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <header class="top">
-    <h1>Jianpu Trainer <span>numbers → solfège</span></h1>
-    <p class="hint">Read the numbers, sing the syllables out loud, then press <kbd>Space</kbd> to check.</p>
+    <div class="title-row">
+      <h1><span data-i18n="h1">Jianpu Trainer</span> <span class="tagline" data-i18n="tagline">numbers → solfège</span></h1>
+      <label class="lang">
+        <span class="sr-only" data-i18n="lang">Language</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <select id="langSelect"></select>
+      </label>
+    </div>
+    <p class="hint" data-i18n-html="hint">Read the numbers, sing the syllables out loud, then press <kbd>Space</kbd> to check.</p>
   </header>
 
   <main>
@@ -29,40 +47,49 @@
       <p class="prompt" id="prompt">Press <kbd>Space</kbd> to show the answer</p>
     </section>
 
-    <section class="controls" aria-label="Practice settings">
+    <section class="controls" id="controls" aria-label="Practice settings">
       <div class="field">
-        <span class="label">Notes to practice</span>
+        <span class="label" data-i18n="notes">Notes to practice</span>
         <div class="chips" id="chips"></div>
       </div>
 
       <div class="field">
-        <span class="label">Notes per sequence</span>
+        <span class="label" data-i18n="length">Notes per sequence</span>
         <div class="range">
           <input type="number" id="minLen" min="1" max="8" value="2" aria-label="Shortest length" />
-          <span>to</span>
+          <span data-i18n="to">to</span>
           <input type="number" id="maxLen" min="1" max="8" value="3" aria-label="Longest length" />
         </div>
       </div>
 
+      <div class="field">
+        <span class="label" id="sevenLabel" data-i18n="seven">Syllable for 7</span>
+        <div class="segmented" role="radiogroup" aria-labelledby="sevenLabel" id="sevenGroup">
+          <button type="button" role="radio" data-seven="si">si</button>
+          <button type="button" role="radio" data-seven="ti">ti</button>
+        </div>
+      </div>
+
       <div class="field toggles">
-        <label><input type="checkbox" id="allowRepeat" /> Allow repeated neighbors (e.g. 33)</label>
-        <label><input type="checkbox" id="playSound" checked /> Play pitches with the answer (1 = C)</label>
+        <label><input type="checkbox" id="allowRepeat" /> <span data-i18n="repeat">Allow repeated neighbors (e.g. 33)</span></label>
+        <label><input type="checkbox" id="playSound" checked /> <span data-i18n="sound">Play pitches with the answer (1 = C)</span></label>
       </div>
 
       <p class="stats" id="stats">0 sequences practiced</p>
     </section>
 
     <section class="about">
-      <h2>What is jianpu?</h2>
-      <p>Jianpu is numbered musical notation, widely used in China and East Asia. The digits 1–7 stand for the seven scale degrees, sung as <b>do re mi fa sol la si</b>. In C major, 1 = C, 2 = D, 3 = E, and so on. Reading the numbers straight as syllables is the first step to sight-singing from jianpu.</p>
+      <h2 data-i18n="aboutTitle">What is jianpu?</h2>
+      <p id="aboutBody">Jianpu is numbered musical notation, widely used in China and East Asia. The digits 1–7 stand for the seven scale degrees, sung as <b>do re mi fa sol la si</b>. In C major, 1 = C, 2 = D, 3 = E, and so on. Reading the numbers straight as syllables is the first step to sight-singing from jianpu.</p>
     </section>
   </main>
 
   <footer class="foot">
-    <span><kbd>Space</kbd> show answer / next</span>
-    <span>On a phone, tap the numbers</span>
+    <span data-i18n-html="footKeys"><kbd>Space</kbd> show answer / next</span>
+    <span data-i18n="footTap">On a phone, tap the numbers</span>
   </footer>
 
-  <script src="app.js?v=4"></script>
+  <script src="i18n.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
