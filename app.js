@@ -93,7 +93,9 @@ function reveal() {
   revealed = true;
   count++;
   statsEl.textContent = `${count} sequence${count === 1 ? "" : "s"} practiced`;
-  render();
+  // keep the existing notes so the entry animation doesn't replay
+  stage.classList.add("revealed");
+  prompt.innerHTML = "Press <kbd>Space</kbd> for the next one";
   if (settings.playSound) playSequence(current);
 }
 
