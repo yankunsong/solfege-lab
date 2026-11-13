@@ -1,55 +1,65 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>简谱练耳 · 唱名速认</title>
-  <meta name="description" content="看简谱数字，读出唱名，按空格核对答案。" />
+  <title>Jianpu Trainer – Learn Numbered Notation Solfège (Do Re Mi)</title>
+  <meta name="description" content="Free practice tool for jianpu (numbered musical notation). See random number sequences like 1 3 5, sing the solfège syllables (do re mi fa sol la si), then press Space to check the answer and hear the pitches." />
+  <meta name="keywords" content="jianpu, numbered musical notation, solfege, solfège practice, do re mi, sight singing, music theory, ear training, 简谱, 唱名" />
+  <link rel="canonical" href="https://yankunsong.github.io/jianpu-trainer/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jianpu Trainer – Numbered Notation to Solfège" />
+  <meta property="og:description" content="Read random jianpu numbers, sing do re mi, press Space to check." />
+  <meta property="og:url" content="https://yankunsong.github.io/jianpu-trainer/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="top">
-    <h1>简谱 <span>唱名速认</span></h1>
-    <p class="hint">看数字，先自己读出唱名，再按 <kbd>空格</kbd> 核对。</p>
+    <h1>Jianpu Trainer <span>numbers → solfège</span></h1>
+    <p class="hint">Read the numbers, sing the syllables out loud, then press <kbd>Space</kbd> to check.</p>
   </header>
 
   <main>
     <section class="stage" id="stage" aria-live="polite">
       <div class="staff" id="staff"></div>
-      <p class="prompt" id="prompt">按 <kbd>空格</kbd> 显示答案</p>
+      <p class="prompt" id="prompt">Press <kbd>Space</kbd> to show the answer</p>
     </section>
 
-    <section class="controls" aria-label="练习设置">
+    <section class="controls" aria-label="Practice settings">
       <div class="field">
-        <span class="label">练习哪些音</span>
+        <span class="label">Notes to practice</span>
         <div class="chips" id="chips"></div>
       </div>
 
       <div class="field">
-        <span class="label">每串长度</span>
+        <span class="label">Notes per sequence</span>
         <div class="range">
-          <input type="number" id="minLen" min="1" max="8" value="2" aria-label="最短长度" />
-          <span>到</span>
-          <input type="number" id="maxLen" min="1" max="8" value="3" aria-label="最长长度" />
-          <span>个音</span>
+          <input type="number" id="minLen" min="1" max="8" value="2" aria-label="Shortest length" />
+          <span>to</span>
+          <input type="number" id="maxLen" min="1" max="8" value="3" aria-label="Longest length" />
         </div>
       </div>
 
       <div class="field toggles">
-        <label><input type="checkbox" id="allowRepeat" /> 允许相邻重复（如 33）</label>
-        <label><input type="checkbox" id="playSound" checked /> 显示答案时播放音高（1 = C）</label>
+        <label><input type="checkbox" id="allowRepeat" /> Allow repeated neighbors (e.g. 33)</label>
+        <label><input type="checkbox" id="playSound" checked /> Play pitches with the answer (1 = C)</label>
       </div>
 
-      <p class="stats" id="stats">已练 0 串</p>
+      <p class="stats" id="stats">0 sequences practiced</p>
+    </section>
+
+    <section class="about">
+      <h2>What is jianpu?</h2>
+      <p>Jianpu is numbered musical notation, widely used in China and East Asia. The digits 1–7 stand for the seven scale degrees, sung as <b>do re mi fa sol la si</b>. In C major, 1 = C, 2 = D, 3 = E, and so on. Reading the numbers straight as syllables is the first step to sight-singing from jianpu.</p>
     </section>
   </main>
 
   <footer class="foot">
-    <span><kbd>空格</kbd> 显示答案 / 下一串</span>
-    <span>手机上点数字区域即可</span>
+    <span><kbd>Space</kbd> show answer / next</span>
+    <span>On a phone, tap the numbers</span>
   </footer>
 
   <script src="app.js"></script>

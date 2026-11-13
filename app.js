@@ -1,14 +1,14 @@
-// 简谱数字 → 唱名
+// jianpu digit → solfège syllable
 const SOLFEGE = {
-  1: { en: "do", zh: "哆" },
-  2: { en: "re", zh: "来" },
-  3: { en: "mi", zh: "咪" },
-  4: { en: "fa", zh: "发" },
-  5: { en: "sol", zh: "唆" },
-  6: { en: "la", zh: "拉" },
-  7: { en: "si", zh: "西" },
+  1: "do",
+  2: "re",
+  3: "mi",
+  4: "fa",
+  5: "sol",
+  6: "la",
+  7: "si",
 };
-// C 大调，1 = C4 的频率
+// C major, 1 = C4
 const FREQ = { 1: 261.63, 2: 293.66, 3: 329.63, 4: 349.23, 5: 392.0, 6: 440.0, 7: 493.88 };
 
 const STORAGE_KEY = "jianpu-trainer:settings";
@@ -47,7 +47,7 @@ function generate() {
   const pool = settings.digits;
   if (pool.length === 0) return [];
   const len = settings.minLen + rand(settings.maxLen - settings.minLen + 1);
-  // 只选了一个音时，不重复就无法生成长度 > 1 的串
+  // with a single note selected, sequences longer than 1 must repeat
   const allowRepeat = settings.allowRepeat || pool.length === 1;
   const prevKey = current.join("");
 
@@ -68,7 +68,7 @@ function render() {
   stage.classList.toggle("revealed", revealed);
 
   if (current.length === 0) {
-    prompt.textContent = "先在下面至少选一个音";
+    prompt.textContent = "Pick at least one note below";
     return;
   }
 
@@ -77,10 +77,10 @@ function render() {
     note.className = `note n${d}`;
     note.innerHTML = `
       <span class="digit">${d}</span>
-      <span class="syllable"><span class="en">${SOLFEGE[d].en}</span><span class="zh">${SOLFEGE[d].zh}</span></span>`;
+      <span class="syllable"><span class="en">${SOLFEGE[d]}</span></span>`;
     staff.appendChild(note);
   }
-  prompt.innerHTML = revealed ? "按 <kbd>空格</kbd> 下一串" : "按 <kbd>空格</kbd> 显示答案";
+  prompt.innerHTML = revealed ? "Press <kbd>Space</kbd> for the next one" : "Press <kbd>Space</kbd> to show the answer";
 }
 
 function next() {
@@ -92,7 +92,7 @@ function next() {
 function reveal() {
   revealed = true;
   count++;
-  statsEl.textContent = `已练 ${count} 串`;
+  statsEl.textContent = `${count} sequence${count === 1 ? "" : "s"} practiced`;
   render();
   if (settings.playSound) playSequence(current);
 }
@@ -102,7 +102,7 @@ function advance() {
   revealed ? next() : reveal();
 }
 
-// ---------- 声音 ----------
+// ---------- sound ----------
 let audioCtx = null;
 function playSequence(seq) {
   try {
@@ -134,7 +134,7 @@ function playSequence(seq) {
   });
 }
 
-// ---------- 设置面板 ----------
+// ---------- settings ----------
 function buildChips() {
   chips.innerHTML = "";
   for (let d = 1; d <= 7; d++) {
@@ -142,7 +142,7 @@ function buildChips() {
     b.type = "button";
     b.className = "chip";
     b.textContent = d;
-    b.setAttribute("aria-label", `${d}（${SOLFEGE[d].en}）`);
+    b.setAttribute("aria-label", `${d} (${SOLFEGE[d]})`);
     b.setAttribute("aria-pressed", settings.digits.includes(d));
     b.addEventListener("click", () => {
       const has = settings.digits.includes(d);
@@ -193,10 +193,10 @@ function initControls() {
   });
 }
 
-// ---------- 输入 ----------
+// ---------- input ----------
 document.addEventListener("keydown", (e) => {
   if (e.code !== "Space" || e.repeat) return;
-  // 在输入框里打字时不拦截
+  // don't hijack Space while typing in a field
   if (e.target.matches("input[type=number], input[type=text], textarea")) return;
   e.preventDefault();
   if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();

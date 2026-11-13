@@ -1,20 +1,22 @@
-# 简谱练习 · jianpu-trainer
+# Jianpu Trainer
 
-一个帮助学乐理的小网站。纯静态页面（HTML + CSS + JS），无需构建。
+A small, free music-theory practice site. Plain static HTML/CSS/JS, no build step.
 
-## 功能一：简谱数字 ↔ 唱名
+**Live:** https://yankunsong.github.io/jianpu-trainer/
 
-1. 选择要练习的音（例如 1 2 3 5）和每串的长度范围（例如 2–3）。
-2. 网站随机生成一串数字，例如 `12`、`35`、`135`。
-3. 自己先读出唱名，然后按 **空格** 显示答案（do re mi fa sol la si），可选同时播放音高。
-4. 再按 **空格** 进入下一串。手机上点数字区域即可。
+## Feature 1: jianpu numbers → solfège
 
-设置会保存在浏览器里。
+1. Pick the notes to practice (e.g. 1 2 3 5) and the sequence length range (e.g. 2–3).
+2. The site shows a random sequence such as `12`, `35`, `135`.
+3. Sing the syllables yourself, then press **Space** to reveal the answer (do re mi fa sol la si), optionally with the pitches played back.
+4. Press **Space** again for the next sequence. On a phone, tap the numbers.
 
-## 本地运行
+Settings are saved in your browser.
 
-直接用浏览器打开 `index.html`，或：
+## Run locally
 
-```bash
-npx serve .
-```
+Open `index.html` in a browser, or run `npx serve .`.
+
+---
+
+简谱数字 ↔ 唱名练习小工具：选择要练的音和长度范围，看数字自己读唱名，按空格核对答案。
