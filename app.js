@@ -31,7 +31,7 @@ let past = [];
 let pos = -1;
 let current = [];
 let revealed = false;
-let count = 0; // sequences whose answer has been shown at least once
+let count = 0; // sequences practiced: answer shown, or moved past with →
 
 function loadSettings() {
   try {
@@ -193,7 +193,17 @@ function fresh() {
   show(past.length - 1);
 }
 
+// Count a sequence once, the first time its answer is shown or the user moves past it.
+function markPracticed() {
+  const entry = past[pos];
+  if (!entry || entry.seen || entry.seq.length === 0) return;
+  entry.seen = true;
+  count++;
+  updateStats();
+}
+
 function next() {
+  markPracticed();
   if (pos < past.length - 1) show(pos + 1);
   else fresh();
 }
@@ -209,12 +219,7 @@ function toggleAnswer() {
   stage.classList.toggle("revealed", revealed);
   updatePrompt();
   if (!revealed) return;
-  const entry = past[pos];
-  if (!entry.seen) {
-    entry.seen = true;
-    count++;
-    updateStats();
-  }
+  markPracticed();
   if (settings.playSound) playSequence(current);
 }
 
