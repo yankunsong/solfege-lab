@@ -1,21 +1,23 @@
 // UI strings. {space}/{left}/{right} become <kbd> keys; {syllables} becomes "do re mi fa sol la si/ti".
 // The solfège syllables themselves are not translated: they are the same in every language.
 const LANGUAGES = [
-  { code: "en", name: "English" },
-  { code: "zh-Hans", name: "简体中文" },
-  { code: "zh-Hant", name: "繁體中文" },
-  { code: "ja", name: "日本語" },
-  { code: "ko", name: "한국어" },
-  { code: "es", name: "Español" },
-  { code: "fr", name: "Français" },
-  { code: "de", name: "Deutsch" },
-  { code: "pt", name: "Português" },
-  { code: "ru", name: "Русский" },
+  { code: "en", name: "English", locale: "en_US" },
+  { code: "zh-Hans", name: "简体中文", locale: "zh_CN" },
+  { code: "zh-Hant", name: "繁體中文", locale: "zh_TW" },
+  { code: "ja", name: "日本語", locale: "ja_JP" },
+  { code: "ko", name: "한국어", locale: "ko_KR" },
+  { code: "es", name: "Español", locale: "es_ES" },
+  { code: "fr", name: "Français", locale: "fr_FR" },
+  { code: "de", name: "Deutsch", locale: "de_DE" },
+  { code: "pt", name: "Português", locale: "pt_BR" },
+  { code: "ru", name: "Русский", locale: "ru_RU" },
 ];
 
 const STRINGS = {
   en: {
     docTitle: "Solfège Lab – Numbers to Solfège Trainer: Scale Degrees 1–7 as Do Re Mi",
+    docDesc:
+      "Free solfège practice: see random scale-degree numbers like 1 3 5, sing them as do re mi fa sol la ti (or si), then press Space to check and hear the pitches. Great for sight-singing, music theory class and reading numbered notation (jianpu).",
     tagline: "Numbers → Solfège",
     hint: "Read the numbers, sing the syllables out loud, then press {space} to check.",
     show: "Press {space} to show the answer",
@@ -43,6 +45,8 @@ const STRINGS = {
   },
   "zh-Hans": {
     docTitle: "Solfège Lab – 简谱数字与唱名（do re mi）对应训练",
+    docDesc:
+      "免费简谱唱名练习：随机显示 1 3 5 这样的简谱数字，先自己唱出 do re mi fa sol la si，再按空格核对答案并听音高。适合视唱练耳、乐理入门和简谱识谱。",
     tagline: "数字 → 唱名",
     hint: "看数字，先自己读出唱名，再按 {space} 核对。",
     show: "按 {space} 显示答案",
@@ -70,6 +74,8 @@ const STRINGS = {
   },
   "zh-Hant": {
     docTitle: "Solfège Lab – 簡譜數字與唱名（do re mi）對應訓練",
+    docDesc:
+      "免費簡譜唱名練習：隨機顯示 1 3 5 這樣的簡譜數字，先自己唱出 do re mi fa sol la si，再按空白鍵核對答案並聆聽音高。適合視唱練耳、樂理入門與簡譜識譜。",
     tagline: "數字 → 唱名",
     hint: "看數字，先自己讀出唱名，再按 {space} 核對。",
     show: "按 {space} 顯示答案",
@@ -97,6 +103,8 @@ const STRINGS = {
   },
   ja: {
     docTitle: "Solfège Lab – 数字譜（簡譜）の数字と階名（ドレミ）を覚える",
+    docDesc:
+      "無料の数字譜（簡譜）練習：1 3 5 のようなランダムな数字を見てドレミ（do re mi fa sol la si）で歌い、スペースキーで答えと音を確認。視唱、楽典の学習、数字譜の読譜練習に。",
     tagline: "数字 → 階名",
     hint: "数字を見て階名を声に出して歌い、{space} で答え合わせ。",
     show: "{space} で答えを表示",
@@ -124,6 +132,8 @@ const STRINGS = {
   },
   ko: {
     docTitle: "Solfège Lab – 숫자 악보를 계이름(도레미)으로 읽기",
+    docDesc:
+      "무료 계이름 연습: 1 3 5 같은 무작위 음도 숫자를 보고 도 레 미 파 솔 라 시로 불러 본 뒤, 스페이스 키로 정답과 음높이를 확인하세요. 시창, 음악 이론 공부, 숫자 악보(간보) 읽기에 좋습니다.",
     tagline: "숫자 → 계이름",
     hint: "숫자를 보고 계이름을 소리 내어 부른 뒤 {space}를 눌러 확인하세요.",
     show: "{space}를 눌러 정답 보기",
@@ -151,6 +161,8 @@ const STRINGS = {
   },
   es: {
     docTitle: "Solfège Lab – Practica solfeo con números: grados 1–7 como Do Re Mi",
+    docDesc:
+      "Práctica de solfeo gratis: mira números de grados de la escala como 1 3 5, cántalos como do re mi fa sol la si y pulsa Espacio para comprobar y oír las notas. Ideal para lectura a primera vista, teoría musical y notación numérica (jianpu).",
     tagline: "números → solfeo",
     hint: "Lee los números, canta las sílabas en voz alta y pulsa {space} para comprobar.",
     show: "Pulsa {space} para ver la respuesta",
@@ -178,6 +190,8 @@ const STRINGS = {
   },
   fr: {
     docTitle: "Solfège Lab – Lire les degrés 1 à 7 en solfège (do ré mi)",
+    docDesc:
+      "Exercice de solfège gratuit : lisez des degrés de la gamme au hasard comme 1 3 5, chantez-les en do ré mi fa sol la si, puis appuyez sur Espace pour vérifier et entendre les notes. Idéal pour le déchiffrage chanté, la théorie musicale et la notation chiffrée (jianpu).",
     tagline: "chiffres → solfège",
     hint: "Lisez les chiffres, chantez les syllabes à voix haute, puis appuyez sur {space} pour vérifier.",
     show: "Appuyez sur {space} pour voir la réponse",
@@ -205,6 +219,8 @@ const STRINGS = {
   },
   de: {
     docTitle: "Solfège Lab – Stufenzahlen 1–7 als Do Re Mi singen üben",
+    docDesc:
+      "Kostenloses Solmisationstraining: Lies zufällige Stufenzahlen wie 1 3 5, singe sie als do re mi fa sol la si (oder ti) und drücke die Leertaste, um zu prüfen und die Töne zu hören. Ideal für Blattsingen, Musiktheorie und Ziffernnotation (Jianpu).",
     tagline: "Ziffern → Solmisation",
     hint: "Lies die Ziffern, sing die Silben laut und drück dann {space} zum Prüfen.",
     show: "{space} drücken für die Lösung",
@@ -232,6 +248,8 @@ const STRINGS = {
   },
   pt: {
     docTitle: "Solfège Lab – Pratique solfejo com números: graus 1–7 como Dó Ré Mi",
+    docDesc:
+      "Prática de solfejo grátis: veja números de graus da escala como 1 3 5, cante como dó ré mi fá sol lá si e aperte Espaço para conferir e ouvir as notas. Ótimo para leitura à primeira vista, teoria musical e notação numérica (jianpu).",
     tagline: "números → solfejo",
     hint: "Leia os números, cante as sílabas em voz alta e pressione {space} para conferir.",
     show: "Pressione {space} para ver a resposta",
@@ -259,6 +277,8 @@ const STRINGS = {
   },
   ru: {
     docTitle: "Solfège Lab – ступени 1–7 как до ре ми: тренажёр сольфеджио",
+    docDesc:
+      "Бесплатный тренажёр сольфеджио: смотрите на случайные ступени вроде 1 3 5, пойте их как до ре ми фа соль ля си и нажимайте Пробел, чтобы проверить ответ и услышать ноты. Для пения с листа, теории музыки и цифровой нотации (цзяньпу).",
     tagline: "цифры → сольфеджио",
     hint: "Прочитайте цифры, пропойте слоги вслух и нажмите {space}, чтобы проверить.",
     show: "Нажмите {space}, чтобы увидеть ответ",

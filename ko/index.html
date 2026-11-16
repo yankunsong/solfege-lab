@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solfège Lab – 숫자 악보를 계이름(도레미)으로 읽기</title>
+  <meta name="description" content="무료 계이름 연습: 1 3 5 같은 무작위 음도 숫자를 보고 도 레 미 파 솔 라 시로 불러 본 뒤, 스페이스 키로 정답과 음높이를 확인하세요. 시창, 음악 이론 공부, 숫자 악보(간보) 읽기에 좋습니다." />
+  <meta name="keywords" content="solfege practice, solfege trainer, scale degrees, do re mi, sight singing, music theory, ear training, numbered notation, jianpu, 简谱, 唱名, 簡譜, 数字譜, 간보" />
+  <link rel="canonical" href="https://solfegelab.com/ko/" />
+  <link rel="alternate" hreflang="x-default" href="https://solfegelab.com/" />
+  <link rel="alternate" hreflang="en" href="https://solfegelab.com/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://solfegelab.com/zh-Hans/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://solfegelab.com/zh-Hant/" />
+  <link rel="alternate" hreflang="ja" href="https://solfegelab.com/ja/" />
+  <link rel="alternate" hreflang="ko" href="https://solfegelab.com/ko/" />
+  <link rel="alternate" hreflang="es" href="https://solfegelab.com/es/" />
+  <link rel="alternate" hreflang="fr" href="https://solfegelab.com/fr/" />
+  <link rel="alternate" hreflang="de" href="https://solfegelab.com/de/" />
+  <link rel="alternate" hreflang="pt" href="https://solfegelab.com/pt/" />
+  <link rel="alternate" hreflang="ru" href="https://solfegelab.com/ru/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:title" content="Solfège Lab – 숫자 악보를 계이름(도레미)으로 읽기" />
+  <meta property="og:site_name" content="Solfège Lab" />
+  <meta property="og:description" content="무료 계이름 연습: 1 3 5 같은 무작위 음도 숫자를 보고 도 레 미 파 솔 라 시로 불러 본 뒤, 스페이스 키로 정답과 음높이를 확인하세요. 시창, 음악 이론 공부, 숫자 악보(간보) 읽기에 좋습니다." />
+  <meta property="og:url" content="https://solfegelab.com/ko/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317203a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-weight='700' font-size='44' fill='%23fff' text-anchor='middle'%3E1%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css?v=10" />
+</head>
+<body>
+  <header class="top">
+    <div class="title-row">
+      <h1><span class="brand">Solfège Lab</span> <span class="tagline" data-i18n="tagline">숫자 → 계이름</span></h1>
+      <label class="lang">
+        <span class="sr-only" data-i18n="lang">언어</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <select id="langSelect"><option value="en">English</option><option value="zh-Hans">简体中文</option><option value="zh-Hant">繁體中文</option><option value="ja">日本語</option><option value="ko" selected>한국어</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="ru">Русский</option></select>
+      </label>
+    </div>
+    <p class="hint" data-i18n-html="hint">숫자를 보고 계이름을 소리 내어 부른 뒤 <kbd>스페이스</kbd>를 눌러 확인하세요.</p>
+  </header>
+
+  <main>
+    <section class="stage" id="stage" aria-live="polite">
+      <div class="stage-row">
+        <button type="button" class="nav" id="prevBtn" aria-label="이전">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="staff" id="staff"></div>
+        <button type="button" class="nav" id="nextBtn" aria-label="다음">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <p class="prompt" id="prompt"><kbd>스페이스</kbd>를 눌러 정답 보기</p>
+    </section>
+
+    <section class="controls" id="controls" aria-label="연습 설정">
+      <div class="field">
+        <span class="label" data-i18n="notes">연습할 음</span>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="field">
+        <span class="label" data-i18n="length">한 번에 나오는 음 개수</span>
+        <div class="range">
+          <input type="number" id="minLen" min="1" max="8" value="2" aria-label="최소" />
+          <span data-i18n="to">~</span>
+          <input type="number" id="maxLen" min="1" max="8" value="3" aria-label="최대" />
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label" id="sevenLabel" data-i18n="seven">7의 계이름</span>
+        <div class="segmented" role="radiogroup" aria-labelledby="sevenLabel" id="sevenGroup">
+          <button type="button" role="radio" data-seven="si">si</button>
+          <button type="button" role="radio" data-seven="ti">ti</button>
+        </div>
+      </div>
+
+      <div class="field toggles">
+        <label><input type="checkbox" id="allowRepeat" /> <span data-i18n="repeat">같은 음 연속 허용 (예: 33)</span></label>
+        <label><input type="checkbox" id="playSound" checked /> <span data-i18n="sound">정답과 함께 음 재생 (1 = C)</span></label>
+      </div>
+
+      <p class="stats" id="stats">0개 연습함</p>
+    </section>
+
+    <section class="about">
+      <h2 data-i18n="aboutTitle">간보(숫자 악보)란?</h2>
+      <p id="aboutBody">간보는 숫자로 음악을 적는 기보법으로, 중국과 동아시아에서 널리 쓰입니다. 숫자 1–7은 음계의 일곱 음을 나타내며 <b>do re mi fa sol la si</b>로 부릅니다. C장조에서는 1 = C, 2 = D, 3 = E입니다. 숫자를 보자마자 계이름으로 부를 수 있는 것이 간보 시창의 첫걸음입니다.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span data-i18n-html="footKeys"><kbd>스페이스</kbd> 정답 보기 / 숨기기 · <kbd>←</kbd> <kbd>→</kbd> 이전 / 다음</span>
+    <span data-i18n="footTap">휴대폰에서는 숫자를 탭해 정답을 보고, 화살표로 이동하세요</span>
+  </footer>
+
+  <script src="../i18n.js?v=10"></script>
+  <script src="../app.js?v=10"></script>
+</body>
+</html>

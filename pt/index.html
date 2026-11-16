@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solfège Lab – Pratique solfejo com números: graus 1–7 como Dó Ré Mi</title>
+  <meta name="description" content="Prática de solfejo grátis: veja números de graus da escala como 1 3 5, cante como dó ré mi fá sol lá si e aperte Espaço para conferir e ouvir as notas. Ótimo para leitura à primeira vista, teoria musical e notação numérica (jianpu)." />
+  <meta name="keywords" content="solfege practice, solfege trainer, scale degrees, do re mi, sight singing, music theory, ear training, numbered notation, jianpu, 简谱, 唱名, 簡譜, 数字譜, 간보" />
+  <link rel="canonical" href="https://solfegelab.com/pt/" />
+  <link rel="alternate" hreflang="x-default" href="https://solfegelab.com/" />
+  <link rel="alternate" hreflang="en" href="https://solfegelab.com/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://solfegelab.com/zh-Hans/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://solfegelab.com/zh-Hant/" />
+  <link rel="alternate" hreflang="ja" href="https://solfegelab.com/ja/" />
+  <link rel="alternate" hreflang="ko" href="https://solfegelab.com/ko/" />
+  <link rel="alternate" hreflang="es" href="https://solfegelab.com/es/" />
+  <link rel="alternate" hreflang="fr" href="https://solfegelab.com/fr/" />
+  <link rel="alternate" hreflang="de" href="https://solfegelab.com/de/" />
+  <link rel="alternate" hreflang="pt" href="https://solfegelab.com/pt/" />
+  <link rel="alternate" hreflang="ru" href="https://solfegelab.com/ru/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Solfège Lab – Pratique solfejo com números: graus 1–7 como Dó Ré Mi" />
+  <meta property="og:site_name" content="Solfège Lab" />
+  <meta property="og:description" content="Prática de solfejo grátis: veja números de graus da escala como 1 3 5, cante como dó ré mi fá sol lá si e aperte Espaço para conferir e ouvir as notas. Ótimo para leitura à primeira vista, teoria musical e notação numérica (jianpu)." />
+  <meta property="og:url" content="https://solfegelab.com/pt/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317203a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-weight='700' font-size='44' fill='%23fff' text-anchor='middle'%3E1%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css?v=10" />
+</head>
+<body>
+  <header class="top">
+    <div class="title-row">
+      <h1><span class="brand">Solfège Lab</span> <span class="tagline" data-i18n="tagline">números → solfejo</span></h1>
+      <label class="lang">
+        <span class="sr-only" data-i18n="lang">Idioma</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <select id="langSelect"><option value="en">English</option><option value="zh-Hans">简体中文</option><option value="zh-Hant">繁體中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="pt" selected>Português</option><option value="ru">Русский</option></select>
+      </label>
+    </div>
+    <p class="hint" data-i18n-html="hint">Leia os números, cante as sílabas em voz alta e pressione <kbd>Espaço</kbd> para conferir.</p>
+  </header>
+
+  <main>
+    <section class="stage" id="stage" aria-live="polite">
+      <div class="stage-row">
+        <button type="button" class="nav" id="prevBtn" aria-label="Anterior">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="staff" id="staff"></div>
+        <button type="button" class="nav" id="nextBtn" aria-label="Próxima">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <p class="prompt" id="prompt">Pressione <kbd>Espaço</kbd> para ver a resposta</p>
+    </section>
+
+    <section class="controls" id="controls" aria-label="Configurações de prática">
+      <div class="field">
+        <span class="label" data-i18n="notes">Notas para praticar</span>
+        <div class="chips" id="chips"></div>
+      </div>
+
+      <div class="field">
+        <span class="label" data-i18n="length">Notas por sequência</span>
+        <div class="range">
+          <input type="number" id="minLen" min="1" max="8" value="2" aria-label="Comprimento mínimo" />
+          <span data-i18n="to">a</span>
+          <input type="number" id="maxLen" min="1" max="8" value="3" aria-label="Comprimento máximo" />
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label" id="sevenLabel" data-i18n="seven">Sílaba do 7</span>
+        <div class="segmented" role="radiogroup" aria-labelledby="sevenLabel" id="sevenGroup">
+          <button type="button" role="radio" data-seven="si">si</button>
+          <button type="button" role="radio" data-seven="ti">ti</button>
+        </div>
+      </div>
+
+      <div class="field toggles">
+        <label><input type="checkbox" id="allowRepeat" /> <span data-i18n="repeat">Permitir notas repetidas seguidas (ex.: 33)</span></label>
+        <label><input type="checkbox" id="playSound" checked /> <span data-i18n="sound">Tocar as notas com a resposta (1 = Dó)</span></label>
+      </div>
+
+      <p class="stats" id="stats">0 sequências praticadas</p>
+    </section>
+
+    <section class="about">
+      <h2 data-i18n="aboutTitle">O que é jianpu?</h2>
+      <p id="aboutBody">Jianpu é a notação musical numérica, muito usada na China e no Leste Asiático. Os dígitos 1–7 representam os sete graus da escala, cantados como <b>do re mi fa sol la si</b>. Em Dó maior, 1 = Dó, 2 = Ré, 3 = Mi e assim por diante. Ler os números diretamente como sílabas é o primeiro passo para solfejar com jianpu.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span data-i18n-html="footKeys"><kbd>Espaço</kbd> mostrar / ocultar resposta · <kbd>←</kbd> <kbd>→</kbd> anterior / próxima</span>
+    <span data-i18n="footTap">No celular, toque nos números para ver a resposta e use as setas para navegar</span>
+  </footer>
+
+  <script src="../i18n.js?v=10"></script>
+  <script src="../app.js?v=10"></script>
+</body>
+</html>

@@ -45,8 +45,16 @@ function saveSettings() {
 }
 
 // ---------- language ----------
+// Each language has its own page: / (English) and /zh-Hans/, /ja/, … (see scripts/build-pages.mjs).
+// The old ?lang=xx links still work and are moved to the path form.
+function langFromPath() {
+  const seg = location.pathname.split("/").filter(Boolean)[0];
+  return LANGUAGES.some((l) => l.code === seg) ? seg : null;
+}
+const langPath = (code) => (code === "en" ? "/" : `/${code}/`);
+
 function pickLanguage() {
-  const fromUrl = matchLanguage(new URLSearchParams(location.search).get("lang"));
+  const fromUrl = matchLanguage(new URLSearchParams(location.search).get("lang")) || langFromPath();
   if (fromUrl) return fromUrl;
   try {
     const saved = matchLanguage(localStorage.getItem(LANG_KEY));
@@ -73,11 +81,30 @@ function syllable(d) {
 
 const SITE_URL = "https://solfegelab.com/";
 
+const setMeta = (selector, value) => {
+  const el = document.querySelector(selector);
+  if (el) el.setAttribute(el.tagName === "LINK" ? "href" : "content", value);
+};
+
+// Keep the address bar on the page for the current language (not on file:// pages).
+function syncUrl() {
+  if (!location.protocol.startsWith("http")) return;
+  const url = new URL(location.href);
+  url.searchParams.delete("lang");
+  url.pathname = langPath(lang);
+  if (url.href !== location.href) history.replaceState(null, "", url);
+}
+
 function applyLanguage() {
   document.documentElement.lang = lang;
-  // each language URL is its own canonical page; the bare URL stays the default
-  const hasLangParam = new URLSearchParams(location.search).has("lang");
-  document.querySelector('link[rel="canonical"]').href = hasLangParam ? `${SITE_URL}?lang=${lang}` : SITE_URL;
+  const pageUrl = SITE_URL + langPath(lang).slice(1);
+  setMeta('link[rel="canonical"]', pageUrl);
+  setMeta('meta[property="og:url"]', pageUrl);
+  setMeta('meta[name="description"]', t("docDesc"));
+  setMeta('meta[property="og:description"]', t("docDesc"));
+  setMeta('meta[property="og:title"]', t("docTitle"));
+  setMeta('meta[property="og:locale"]', LANGUAGES.find((l) => l.code === lang).locale);
+  syncUrl();
   document.title = t("docTitle");
   document.querySelectorAll("[data-i18n]").forEach((el) => (el.textContent = t(el.dataset.i18n)));
   document.querySelectorAll("[data-i18n-html]").forEach((el) => (el.innerHTML = withSpace(t(el.dataset.i18nHtml))));
@@ -95,9 +122,6 @@ function applyLanguage() {
 function setLanguage(code) {
   lang = code;
   try { localStorage.setItem(LANG_KEY, code); } catch {}
-  const url = new URL(location.href);
-  url.searchParams.set("lang", code);
-  history.replaceState(null, "", url);
   applyLanguage();
   relabelNotes();
 }
@@ -301,7 +325,8 @@ function initControls() {
   allowRepeatEl.checked = settings.allowRepeat;
   playSoundEl.checked = settings.playSound;
 
-  for (const l of LANGUAGES) langSelect.add(new Option(l.name, l.code));
+  // the options are already in the page HTML; add them if not
+  if (!langSelect.options.length) for (const l of LANGUAGES) langSelect.add(new Option(l.name, l.code));
   langSelect.addEventListener("change", () => setLanguage(langSelect.value));
 
   sevenGroup.addEventListener("click", (e) => {
